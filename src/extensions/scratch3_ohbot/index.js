@@ -9,7 +9,8 @@ const MathUtil = require('../../util/math-util');
 const Clone = require('../../util/clone');
 const log = require('../../util/log');
 
-const editorExtensionId = 'mmobhkfcipfooaiiikpnnkllmgillgpn';
+//const editorExtensionId = 'mmobhkfcipfooaiiikpnnkllmgillgpn';
+const editorExtensionId = 'bfjihladgnccpchokgeeicpjcakdmkbe';
 
 /**
  * Icon svg to be displayed in the blocks category menu, encoded as a data URI.
