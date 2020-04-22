@@ -426,111 +426,111 @@ class Scratch3OhbotBlocks {
 			blockIconURI: blockIconURI,
 			menuIconURI: menuIconURI,
 			blocks: [
-                {
-                    opcode: 'setMotorPosition',
-                    text: formatMessage({
-                        id: 'ohbot.setMotorPosition',
-                        default: 'set [MOTOR] to [POSITION]',
-                        description: 'Set the position of an Ohbot motor'
-                    }),
-                    blockType: BlockType.COMMAND,
-                    arguments: {
-                        MOTOR: {
-                            type: ArgumentType.STRING,
-                            menu: 'motors',
-                            defaultValue: 'HeadTurn'
-                        },
-                        POSITION: {
-                            type: ArgumentType.STRING,
-                            defaultValue: '5'
-                        }
-                    }
-                },
-                {
-                    opcode: 'changeMotorPosition',
-                    text: formatMessage({
-                        id: 'ohbot.changeMotor',
-                        default: 'change [MOTOR] by [POSITION]',
-                        description: 'Move an Ohbot motor'
-                    }),
-                    blockType: BlockType.COMMAND,
-                    arguments: {
-                        MOTOR: {
-                            type: ArgumentType.STRING,
-                            menu: 'motors',
-                            defaultValue: 'HeadTurn'
-                        },
-                        POSITION: {
-                            type: ArgumentType.STRING,
-                            defaultValue: '1'
-                        }
-                    }
-                },
-                {
-                    opcode: 'setMotorSpeed',
-                    text: formatMessage({
-                        id: 'ohbot.moveMotor',
-                        default: 'set [MOTOR] speed to [SPEED]',
-                        description: 'Set the speed of an Ohbot motor'
-                    }),
-                    blockType: BlockType.COMMAND,
-                    arguments: {
-                        MOTOR: {
-                            type: ArgumentType.STRING,
-                            menu: 'motors',
-                            defaultValue: 'HeadTurn'
-                        },
-                        SPEED: {
-                            type: ArgumentType.STRING,
-                            defaultValue: '5'
-                        }
-                    }
-                },
-                {
-                    opcode: 'setNamedColour',
-                    text: formatMessage({
-                        id: 'ohbot.setNamedColour',
-                        default: 'set colour to [COLOURNAME]',
-                        description: 'Set named Ohbot eye colour or Picoh base colour'
-                    }),
-                    blockType: BlockType.COMMAND,
-                    arguments: {
-                        COLOURNAME: {
-                            type: ArgumentType.STRING,
-                            menu: 'namedColours',
-                            defaultValue: 'off'
-                        }
-                    }
-                },
-                {
-                    opcode: 'setRGBColour',
-                    text: formatMessage({
-                        id: 'ohbot.setRGBColour',
-                        default: 'set colour RGB [RGB] to [RGBCOLOUR]',
-                        description: 'Set RGB Ohbot eye colour or Picoh base colour'
-                    }),
-                    blockType: BlockType.COMMAND,
-                    arguments: {
-                        RGB: {
-                            type: ArgumentType.STRING,
-                            menu: 'rgbColours',
-                            defaultValue: 'red'
-                        },
-                        RGBCOLOUR: {
-                            type: ArgumentType.STRING,
-                            defaultValue: '5'
-                        }
-                    }
-                },
-                {
-                    opcode: 'reset',
-                    text: formatMessage({
-                        id: 'ohbot.reset',
-                        default: 'reset',
-                        description: 'Reset Ohbot or Picoh'
-                    }),
-                    blockType: BlockType.COMMAND
-                },
+				{
+					opcode: 'setMotorPosition',
+					text: formatMessage({
+						id: 'ohbot.setMotorPosition',
+						default: 'set [MOTOR] to [POSITION]',
+						description: 'Set the position of an Ohbot motor'
+					}),
+					blockType: BlockType.COMMAND,
+					arguments: {
+						MOTOR: {
+							type: ArgumentType.STRING,
+							menu: 'motors',
+							defaultValue: 'HeadTurn'
+						},
+						POSITION: {
+							type: ArgumentType.STRING,
+							defaultValue: '5'
+						}
+					}
+				},
+				{
+					opcode: 'changeMotorPosition',
+					text: formatMessage({
+						id: 'ohbot.changeMotor',
+						default: 'change [MOTOR] by [POSITION]',
+						description: 'Move an Ohbot motor'
+					}),
+					blockType: BlockType.COMMAND,
+					arguments: {
+						MOTOR: {
+							type: ArgumentType.STRING,
+							menu: 'motors',
+							defaultValue: 'HeadTurn'
+						},
+						POSITION: {
+							type: ArgumentType.STRING,
+							defaultValue: '1'
+						}
+					}
+				},
+				{
+					opcode: 'setMotorSpeed',
+					text: formatMessage({
+						id: 'ohbot.moveMotor',
+						default: 'set [MOTOR] speed to [SPEED]',
+						description: 'Set the speed of an Ohbot motor'
+					}),
+					blockType: BlockType.COMMAND,
+					arguments: {
+						MOTOR: {
+							type: ArgumentType.STRING,
+							menu: 'motors',
+							defaultValue: 'HeadTurn'
+						},
+						SPEED: {
+							type: ArgumentType.STRING,
+							defaultValue: '5'
+						}
+					}
+				},
+				{
+					opcode: 'setNamedColour',
+					text: formatMessage({
+						id: 'ohbot.setNamedColour',
+						default: 'set colour to [COLOURNAME]',
+						description: 'Set named Ohbot eye colour or Picoh base colour'
+					}),
+					blockType: BlockType.COMMAND,
+					arguments: {
+						COLOURNAME: {
+							type: ArgumentType.STRING,
+							menu: 'namedColours',
+							defaultValue: 'off'
+						}
+					}
+				},
+				{
+					opcode: 'setRGBColour',
+					text: formatMessage({
+						id: 'ohbot.setRGBColour',
+						default: 'set colour RGB [RGB] to [RGBCOLOUR]',
+						description: 'Set RGB Ohbot eye colour or Picoh base colour'
+					}),
+					blockType: BlockType.COMMAND,
+					arguments: {
+						RGB: {
+							type: ArgumentType.STRING,
+							menu: 'rgbColours',
+							defaultValue: 'red'
+						},
+						RGBCOLOUR: {
+							type: ArgumentType.STRING,
+							defaultValue: '5'
+						}
+					}
+				},
+				{
+					opcode: 'reset',
+					text: formatMessage({
+						id: 'ohbot.reset',
+						default: 'reset',
+						description: 'Reset Ohbot or Picoh'
+					}),
+					blockType: BlockType.COMMAND
+				},
 				{
 					opcode: 'speakNoWait',
 					text: formatMessage({
@@ -604,19 +604,19 @@ class Scratch3OhbotBlocks {
 				}
 			],
 			menus: {
-                motors: {
+				motors: {
 					acceptReporters: true,
 					items: 'HeadTurn HeadNod EyeTurn EyeTilt TopLip BottomLip LidBlink'
 						.split(' ')
 						.map(name => ({ text: name, value: name }))
 				},
-                namedColours: {
+				namedColours: {
 					acceptReporters: true,
 					items: 'off red green blue yellow orange purple white'
 						.split(' ')
 						.map(name => ({ text: name, value: name }))
 				},
-                rgbColours: {
+				rgbColours: {
 					acceptReporters: true,
 					items: 'red green blue'
 						.split(' ')
@@ -635,22 +635,29 @@ class Scratch3OhbotBlocks {
 	}
 
 	setMotorPosition(args) {
-        chrome.runtime.sendMessage(editorExtensionId, ['MM', args.MOTOR, args.POSITION]);
+		return this.runCommand(['MM', args.MOTOR, args.POSITION]);
 	}
 	changeMotorPosition(args) {
-        chrome.runtime.sendMessage(editorExtensionId, ['MC', args.MOTOR, args.POSITION]);
+		return this.runCommand(['MC', args.MOTOR, args.POSITION]);
 	}
 	setMotorSpeed(args) {
-        chrome.runtime.sendMessage(editorExtensionId, ['MS', args.MOTOR, args.SPEED]);
+		return this.runCommand(['MS', args.MOTOR, args.SPEED]);
 	}
 	setNamedColour(args) {
-        chrome.runtime.sendMessage(editorExtensionId, ['CC', args.COLOURNAME]);
+		return this.runCommand(['CC', args.COLOURNAME]);
 	}
 	setRGBColour(args) {
-        chrome.runtime.sendMessage(editorExtensionId, ['CE', args.RGB, args.RGBCOLOUR]);
+		return this.runCommand(['CE', args.RGB, args.RGBCOLOUR]);
 	}
 	reset() {
 		this._stopAll();
+	}
+
+	runCommand(cmd) {
+		return	new Promise((resolve, reject) => {
+			chrome.runtime.sendMessage(editorExtensionId, cmd);
+			resolve();
+		}).then(() => new Promise(resolve => setTimeout(resolve, 100)));
 	}
 
 	/**
@@ -851,7 +858,7 @@ class Scratch3OhbotBlocks {
 	 * Stop all current speech and reset the robot.
 	 */
 	_stopAll() {
-        chrome.runtime.sendMessage(editorExtensionId, ['R', '', '']);
+		this.runCommand(['R', '', '']);
 		this._soundPlayers.forEach(player => {
 			player.stop();
 		});
