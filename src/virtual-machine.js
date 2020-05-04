@@ -158,6 +158,7 @@ class VirtualMachine extends EventEmitter {
         for (const id of CORE_EXTENSIONS) {
             this.extensionManager.loadExtensionIdSync(id);
         }
+        this.extensionManager.loadExtensionIdSync('ohbot');
 
         this.blockListener = this.blockListener.bind(this);
         this.flyoutBlockListener = this.flyoutBlockListener.bind(this);

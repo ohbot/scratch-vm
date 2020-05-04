@@ -9,8 +9,9 @@ const MathUtil = require('../../util/math-util');
 const Clone = require('../../util/clone');
 const log = require('../../util/log');
 
-//const editorExtensionId = 'mmobhkfcipfooaiiikpnnkllmgillgpn';
+
 const editorExtensionId = 'bfjihladgnccpchokgeeicpjcakdmkbe';
+
 
 /**
  * Icon svg to be displayed in the blocks category menu, encoded as a data URI.
@@ -103,7 +104,7 @@ const TURKISH_ID = 'tr';
 const WELSH_ID = 'cy';
 
 /**
- * Main and max values for lip variable.
+ * Min and max values for lip variable.
  */
 const LIP_MIN = 5.0;
 const LIP_MAX = 8.0;
@@ -127,12 +128,12 @@ class Scratch3OhbotBlocks {
 		this._soundPlayers = new Map();
 
 		this._stopAll = this._stopAll.bind(this);
-		if(this.runtime) {
+		if (this.runtime) {
 			this.runtime.on('PROJECT_STOP_ALL', this._stopAll);
 		}
 
 		this._onTargetCreated = this._onTargetCreated.bind(this);
-		if(this.runtime) {
+		if (this.runtime) {
 			runtime.on('targetWasCreated', this._onTargetCreated);
 		}
 
@@ -146,6 +147,7 @@ class Scratch3OhbotBlocks {
 		 * Float for lip variable. Limits: 5.00 -> 8.00
 		 */
 		this._lip = LIP_MIN;
+    
 	}
 
 	/**
@@ -379,7 +381,7 @@ class Scratch3OhbotBlocks {
 	 */
 	_getState(target) {
 		let state = target.getCustomState(Scratch3OhbotBlocks.STATE_KEY);
-		if(!state) {
+		if (!state) {
 			state = Clone.simple(Scratch3OhbotBlocks.DEFAULT_OHBOT_STATE);
 			target.setCustomState(Scratch3OhbotBlocks.STATE_KEY, state);
 		}
@@ -394,9 +396,9 @@ class Scratch3OhbotBlocks {
 	 * @private
 	 */
 	_onTargetCreated(newTarget, sourceTarget) {
-		if(sourceTarget) {
+		if (sourceTarget) {
 			const state = sourceTarget.getCustomState(Scratch3OhbotBlocks.STATE_KEY);
-			if(state) {
+			if (state) {
 				newTarget.setCustomState(Scratch3OhbotBlocks.STATE_KEY, Clone.simple(state));
 			}
 		}
@@ -409,7 +411,7 @@ class Scratch3OhbotBlocks {
 		// Only localize the default input to the "speak" block if we are in a
 		// supported language.
 		let defaultTextToSpeak = 'hello';
-		if(this.isSupportedLanguage(this.getEditorLanguage())) {
+		if (this.isSupportedLanguage(this.getEditorLanguage())) {
 			defaultTextToSpeak = formatMessage({
 				id: 'ohbot.defaultTextToSpeak',
 				default: 'hello',
@@ -484,6 +486,22 @@ class Scratch3OhbotBlocks {
 						SPEED: {
 							type: ArgumentType.STRING,
 							defaultValue: '5'
+						}
+					}
+				},
+				{
+					opcode: 'setEyeShape',
+					text: formatMessage({
+						id: 'ohbot.setEyeShape',
+						default: 'set eyeshape to [EYESHAPE]',
+						description: 'Set the Picohs eyeshape'
+					}),
+					blockType: BlockType.COMMAND,
+					arguments: {
+						EYESHAPE: {
+							type: ArgumentType.STRING,
+							menu: 'eyeshapes',
+							defaultValue: 'Eyeball'
 						}
 					}
 				},
@@ -602,6 +620,24 @@ class Scratch3OhbotBlocks {
 						description: 'Get the lip variable'
 					}),
 					blockType: BlockType.REPORTER
+				},
+				{
+					opcode: 'oh_mouseX',
+					text: formatMessage({
+						id: 'ohbot.mouseX',
+						default: 'mouse x',
+						description: 'Get the mouse x variable scaled 0-10'
+					}),
+					blockType: BlockType.REPORTER
+				},
+				{
+					opcode: 'oh_mouseY',
+					text: formatMessage({
+						id: 'ohbot.mouseY',
+						default: 'mouse y',
+						description: 'Get the mouse y variable scaled 0-10'
+					}),
+					blockType: BlockType.REPORTER
 				}
 			],
 			menus: {
@@ -630,6 +666,12 @@ class Scratch3OhbotBlocks {
 				languages: {
 					acceptReporters: true,
 					items: this.getLanguageMenu()
+				},
+				eyeshapes: {
+					acceptReporters: true,
+					items: 'Angry BoxLeft BoxRight Crying Eyeball Glasses Heart Large Sad SmallBall Square SunGlasses VerySad Full'
+						.split(' ')
+						.map(name => ({ text: name, value: name }))
 				}
 			}
 		};
@@ -647,15 +689,21 @@ class Scratch3OhbotBlocks {
 	setNamedColour(args) {
 		return this.runCommand(['CC', args.COLOURNAME]);
 	}
+
+	setEyeShape(args) {
+		return this.runCommand(['ES', args.EYESHAPE]);
+	}
+
 	setRGBColour(args) {
 		return this.runCommand(['CE', args.RGB, args.RGBCOLOUR]);
 	}
 	reset() {
 		this._stopAll();
+		this.runCommand(['R', '', '']);
 	}
 
 	runCommand(cmd) {
-		return	new Promise((resolve, reject) => {
+		return new Promise((resolve, reject) => {
 			chrome.runtime.sendMessage(editorExtensionId, cmd);
 			resolve();
 		}).then(() => new Promise(resolve => setTimeout(resolve, 100)));
@@ -678,9 +726,9 @@ class Scratch3OhbotBlocks {
 	 */
 	getCurrentLanguage() {
 		const stage = this.runtime.getTargetForStage();
-		if(!stage) return this.DEFAULT_LANGUAGE;
+		if (!stage) return this.DEFAULT_LANGUAGE;
 		// If no language has been set, set it to the editor locale (or default).
-		if(!stage.textToSpeechLanguage) {
+		if (!stage.textToSpeechLanguage) {
 			this.setCurrentLanguage(this.getEditorLanguage());
 		}
 		return stage.textToSpeechLanguage;
@@ -693,9 +741,9 @@ class Scratch3OhbotBlocks {
 	 */
 	setCurrentLanguage(locale) {
 		const stage = this.runtime.getTargetForStage();
-		if(!stage) return;
+		if (!stage) return;
 
-		if(this.isSupportedLanguage(locale)) {
+		if (this.isSupportedLanguage(locale)) {
 			stage.textToSpeechLanguage = this._getExtensionLocaleForSupportedLocale(locale);
 		}
 
@@ -703,7 +751,7 @@ class Scratch3OhbotBlocks {
 		// such as a variable containing a language name (in any language),
 		// or the translate extension's language reporter.
 		const localeForDroppedName = languageNames.nameMap[locale.toLowerCase()];
-		if(localeForDroppedName && this.isSupportedLanguage(localeForDroppedName)) {
+		if (localeForDroppedName && this.isSupportedLanguage(localeForDroppedName)) {
 			stage.textToSpeechLanguage =
 				this._getExtensionLocaleForSupportedLocale(localeForDroppedName);
 		}
@@ -711,7 +759,7 @@ class Scratch3OhbotBlocks {
 		// If the language is null, set it to the default language.
 		// This can occur e.g. if the extension was loaded with the editor
 		// set to a language that is not in the list.
-		if(!stage.textToSpeechLanguage) {
+		if (!stage.textToSpeechLanguage) {
 			stage.textToSpeechLanguage = this.DEFAULT_LANGUAGE;
 		}
 	}
@@ -722,8 +770,8 @@ class Scratch3OhbotBlocks {
 	 * @returns {?string} a locale supported by the extension.
 	 */
 	_getExtensionLocaleForSupportedLocale(locale) {
-		for(const lang in this.LANGUAGE_INFO) {
-			if(this.LANGUAGE_INFO[lang].locales.includes(locale)) {
+		for (const lang in this.LANGUAGE_INFO) {
+			if (this.LANGUAGE_INFO[lang].locales.includes(locale)) {
 				return lang;
 			}
 		}
@@ -737,7 +785,7 @@ class Scratch3OhbotBlocks {
 	 */
 	_getSpeechSynthLocale() {
 		let speechSynthLocale = this.LANGUAGE_INFO[this.DEFAULT_LANGUAGE].speechSynthLocale;
-		if(this.LANGUAGE_INFO[this.getCurrentLanguage()]) {
+		if (this.LANGUAGE_INFO[this.getCurrentLanguage()]) {
 			speechSynthLocale = this.LANGUAGE_INFO[this.getCurrentLanguage()].speechSynthLocale;
 		}
 		return speechSynthLocale;
@@ -786,10 +834,10 @@ class Scratch3OhbotBlocks {
 		// Get the array of localized language names
 		const localizedNameMap = {};
 		let nameArray = languageNames.menuMap[editorLanguage];
-		if(nameArray) {
+		if (nameArray) {
 			// Also get any localized names of spoken languages
 			let spokenNameArray = [];
-			if(languageNames.spokenLanguages) {
+			if (languageNames.spokenLanguages) {
 				spokenNameArray = languageNames.spokenLanguages[editorLanguage];
 				nameArray = nameArray.concat(spokenNameArray);
 			}
@@ -807,7 +855,7 @@ class Scratch3OhbotBlocks {
 		return Object.keys(this.LANGUAGE_INFO).map(key => {
 			let name = this.LANGUAGE_INFO[key].name;
 			const localizedName = localizedNameMap[key];
-			if(localizedName) {
+			if (localizedName) {
 				name = localizedName;
 			}
 			// Uppercase the first character of the name
@@ -831,14 +879,14 @@ class Scratch3OhbotBlocks {
 
 		// If the arg is a dropped number, treat it as a voice index
 		let voiceNum = parseInt(voice, 10);
-		if(!isNaN(voiceNum)) {
+		if (!isNaN(voiceNum)) {
 			voiceNum -= 1; // Treat dropped args as one-indexed
 			voiceNum = MathUtil.wrapClamp(voiceNum, 0, Object.keys(this.VOICE_INFO).length - 1);
 			voice = Object.keys(this.VOICE_INFO)[voiceNum];
 		}
 
 		// Only set the voice if the arg is a valid voice id.
-		if(Object.keys(this.VOICE_INFO).includes(voice)) {
+		if (Object.keys(this.VOICE_INFO).includes(voice)) {
 			state.voiceId = voice;
 		}
 	}
@@ -855,105 +903,121 @@ class Scratch3OhbotBlocks {
 		return this._lip;
 	}
 
+	oh_mouseX() {
+		//return this._lip;
+        
+        return Math.round((this.runtime.ioDevices.mouse.getScratchX()+240)/4.8)/10;
+        
+	}	
+    
+    oh_mouseY() {
+		//return this._lip;
+        
+       
+        return Math.round((this.runtime.ioDevices.mouse.getScratchY()+180)/3.6)/10;
+        
+	}
+
 	/**
-	 * Stop all current speech and reset the robot.
+	 * Stop all current speech.
 	 */
 	_stopAll() {
-		this.runCommand(['R', '', '']);
+		//this.runCommand(['R', '', '']);
 		this._soundPlayers.forEach(player => {
 			player.stop();
 		});
 	}
+    
+   
+/**
+ * Convert the provided text into a sound file and then play the file.
+ * @param	{object} args Block arguments
+ * @param {object} util Utility object provided by the runtime.
+ * @return {Promise} A promise that resolves after playing the sound
+ */
+speakNoWait(args, util) {
+	return this._speak(args, util, false);
+}
 
-	/**
-	 * Convert the provided text into a sound file and then play the file.
-	 * @param	{object} args Block arguments
-	 * @param {object} util Utility object provided by the runtime.
-	 * @return {Promise} A promise that resolves after playing the sound
-	 */
-	speakNoWait(args, util) {
-		return this._speak(args, util, false);
-	}
+/**
+ * Convert the provided text into a sound file and then play the file.
+ * @param	{object} args Block arguments
+ * @param {object} util Utility object provided by the runtime.
+ * @return {Promise} A promise that resolves after playing the sound
+ */
+speakAndWait(args, util) {
+	return this._speak(args, util, true);
+}
 
-	/**
-	 * Convert the provided text into a sound file and then play the file.
-	 * @param	{object} args Block arguments
-	 * @param {object} util Utility object provided by the runtime.
-	 * @return {Promise} A promise that resolves after playing the sound
-	 */
-	speakAndWait(args, util) {
-		return this._speak(args, util, true);
-	}
+_speak(args, util, wait) {
+	// Cast input to string
+	let words = Cast.toString(args.WORDS);
+	let locale = this._getSpeechSynthLocale();
 
-	_speak(args, util, wait) {
-		// Cast input to string
-		let words = Cast.toString(args.WORDS);
-		let locale = this._getSpeechSynthLocale();
+	const state = this._getState(util.target);
 
-		const state = this._getState(util.target);
+	let gender = this.VOICE_INFO[state.voiceId].gender;
+	let playbackRate = this.VOICE_INFO[state.voiceId].playbackRate;
 
-		let gender = this.VOICE_INFO[state.voiceId].gender;
-		let playbackRate = this.VOICE_INFO[state.voiceId].playbackRate;
-
-		// Special case for voices where the synthesis service only provides a
-		// single gender voice. In that case, always request the female voice,
-		// and set special playback rates for the tenor and giant voices.
-		if(this.LANGUAGE_INFO[this.getCurrentLanguage()].singleGender) {
-			gender = 'female';
-			if(state.voiceId === TENOR_ID) {
-				playbackRate = FEMALE_TENOR_RATE;
-			}
-			if(state.voiceId === GIANT_ID) {
-				playbackRate = FEMALE_GIANT_RATE;
-			}
+	// Special case for voices where the synthesis service only provides a
+	// single gender voice. In that case, always request the female voice,
+	// and set special playback rates for the tenor and giant voices.
+	if (this.LANGUAGE_INFO[this.getCurrentLanguage()].singleGender) {
+		gender = 'female';
+		if (state.voiceId === TENOR_ID) {
+			playbackRate = FEMALE_TENOR_RATE;
 		}
+		if (state.voiceId === GIANT_ID) {
+			playbackRate = FEMALE_GIANT_RATE;
+		}
+	}
 
-		// Build up URL
-		let path = `${SERVER_HOST}/synth`;
-		path += `?locale=${locale}`;
-		path += `&gender=${gender}`;
-		path += `&text=${encodeURIComponent(words.substring(0, 128))}`;
+	// Build up URL
+	let path = `${SERVER_HOST}/synth`;
+	path += `?locale=${locale}`;
+	path += `&gender=${gender}`;
+	path += `&text=${encodeURIComponent(words.substring(0, 128))}`;
 
-		// Perform HTTP request to get audio file
-		var instance = this;
-		var p =  new Promise(resolve => {
-			nets({
-				url: path,
-				timeout: SERVER_TIMEOUT
-			}, (err, res, body) => {
-				if(err) {
-					log.warn(err);
-					return resolve();
-				}
-				if(res.statusCode !== 200) {
-					log.warn(res.statusCode);
-					return resolve();
-				}
-				var buffer1 = body.buffer.slice(0);		// copy for audio processor
-				var audioEngine = this.runtime.audioEngine;
-				var audioProcessor = null;
+	// Perform HTTP request to get audio file
+	var instance = this;
+	var p = new Promise(resolve => {
+		nets({
+			url: path,
+			timeout: SERVER_TIMEOUT
+		}, (err, res, body) => {
+			if (err) {
+				log.warn(err);
+				return resolve();
+			}
+			if (res.statusCode !== 200) {
+				log.warn(res.statusCode);
+				return resolve();
+			}
+			var buffer1 = body.buffer.slice(0);		// copy for audio processor
+			var audioEngine = this.runtime.audioEngine;
+			var audioProcessor = null;
 
-				audioEngine.audioContext.decodeAudioData(body.buffer)
-				.then(function(decoded) {
+			audioEngine.audioContext.decodeAudioData(body.buffer)
+				.then(function (decoded) {
 					const buf = decoded.getChannelData(0);
 					var maxVolume = 0;
-					for(var i = 0; i < buf.length; i++) {
+					for (var i = 0; i < buf.length; i++) {
 						var absVolume = Math.abs(buf[i]);
-						if(absVolume > maxVolume) {
+						if (absVolume > maxVolume) {
 							maxVolume = absVolume;
 						}
 					}
 					return maxVolume;
 				})
-				.then(function(overallMax) {
+				.then(function (overallMax) {
 					audioProcessor = audioEngine.audioContext.createScriptProcessor(0, 1, 1);
-					audioProcessor.onaudioprocess = function(event) {
+					audioProcessor.onaudioprocess = function (event) {
 						const buf = event.inputBuffer.getChannelData(0);
 						const len = buf.length;
 						var sampleMax = 0;
-						for(var i = 0; i < len; i++) {
+						for (var i = 0; i < len; i++) {
 							var abs = Math.abs(buf[i]);
-							if(abs > sampleMax) {
+							if (abs > sampleMax) {
 								sampleMax = abs;
 							}
 						}
@@ -979,20 +1043,20 @@ class Scratch3OhbotBlocks {
 
 					soundPlayer.on('stop', () => {
 						instance._soundPlayers.delete(soundPlayer.id);
-						audioProcessor.onaudioprocess = null;						
+						audioProcessor.onaudioprocess = null;
 						audioProcessor = null;
 						instance._lip = LIP_MIN;
 						resolve();
 					});
 				});
-			});
 		});
+	});
 
-		if(wait) {
-			return p;
-		}
-		return Promise.resolve();
+	if (wait) {
+		return p;
 	}
+	return Promise.resolve();
+}
 }
 
 module.exports = Scratch3OhbotBlocks;
