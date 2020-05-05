@@ -504,7 +504,23 @@ class Scratch3OhbotBlocks {
 							defaultValue: 'Eyeball'
 						}
 					}
-				},
+				}
+                ,
+                //{
+                //    opcode: 'displaySymbol',
+                //    text: formatMessage({
+                //        id: 'ohbot.displaySymbol',
+                //        default: 'display [MATRIX]',
+                //        description: 'display a pattern on the micro:bit display'
+                //    }),
+                //    blockType: BlockType.COMMAND,
+                //    arguments: {
+                //        MATRIX: {
+                //            type: ArgumentType.MATRIX,
+                //            defaultValue: '01010101011000101010001000101010101100010101000100'
+                //        }
+                //    }
+                //},
 				{
 					opcode: 'setNamedColour',
 					text: formatMessage({
