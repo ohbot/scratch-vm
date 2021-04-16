@@ -694,6 +694,8 @@ class Scratch3OhbotBlocks {
 	}
 
 	setMotorPosition(args) {
+        unityInstance.SendMessage('Ohbot', "M"+args.MOTOR,parseInt(args.POSITION*100));
+
 		return this.runCommand(['MM', args.MOTOR, args.POSITION]);
 	}
 	changeMotorPosition(args) {
