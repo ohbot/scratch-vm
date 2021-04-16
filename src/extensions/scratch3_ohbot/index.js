@@ -694,30 +694,51 @@ class Scratch3OhbotBlocks {
 	}
 
 	setMotorPosition(args) {
-        unityInstance.SendMessage('Ohbot', "M"+args.MOTOR,parseInt(args.POSITION*100));
+        unityInstance.SendMessage(Robot, "M"+args.MOTOR,parseFloat(args.POSITION));
 
 		return this.runCommand(['MM', args.MOTOR, args.POSITION]);
 	}
 	changeMotorPosition(args) {
+        unityInstance.SendMessage(Robot, "C"+args.MOTOR,parseFloat(args.POSITION));
 		return this.runCommand(['MC', args.MOTOR, args.POSITION]);
 	}
 	setMotorSpeed(args) {
 		return this.runCommand(['MS', args.MOTOR, args.SPEED]);
 	}
 	setNamedColour(args) {
+        unityInstance.SendMessage(Robot, "SetColByName",args.COLOURNAME);
 		return this.runCommand(['CC', args.COLOURNAME]);
 	}
 
 	setEyeShape(args) {
+        if(Robot == 'Picoh')
+            {
+                unityInstance.SendMessage(Robot, "SetEyeShape",args.EYESHAPE);
+            }
 		return this.runCommand(['ES', args.EYESHAPE]);
 	}
 
 	setRGBColour(args) {
+        if(args.RGB == 'red')
+            {
+                unityInstance.SendMessage(Robot, "SetR",parseFloat(args.RGBCOLOUR));
+            }
+        if(args.RGB == 'green')
+            {
+                unityInstance.SendMessage(Robot, "SetG",parseFloat(args.RGBCOLOUR));
+            }
+        if(args.RGB == 'blue')
+            {
+                unityInstance.SendMessage(Robot, "SetB",parseFloat(args.RGBCOLOUR));
+            }
 		return this.runCommand(['CE', args.RGB, args.RGBCOLOUR]);
 	}
+    
 	reset() {
 		this._stopAll();
 		this.runCommand(['R', '', '']);
+        unityInstance.SendMessage(Robot, "ResetController");
+
 	}
 
 	runCommand(cmd) {
@@ -931,7 +952,6 @@ class Scratch3OhbotBlocks {
     oh_mouseY() {
 		//return this._lip;
         
-       
         return Math.round((this.runtime.ioDevices.mouse.getScratchY()+180)/3.6)/10;
         
 	}
