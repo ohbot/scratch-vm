@@ -138,6 +138,11 @@ class Scratch3OhbotBlocks {
 		}
 
 		/**
+		 * Store the most recent answer from OpenAI.
+		 */
+		this._lastAIAnswer = '';
+
+		/**
 		 * A list of all Scratch locales that are supported by the extension.
 		 * @type {Array}
 		 */
@@ -147,7 +152,8 @@ class Scratch3OhbotBlocks {
 		 * Float for lip variable. Limits: 5.00 -> 8.00
 		 */
 		this._lip = LIP_MIN;
-    
+		// Load OpenAI key from localStorage if available
+		this.runtime.openAIKey = localStorage.getItem('ohbot_openai_key') || '';
 	}
 
 	/**
@@ -654,12 +660,36 @@ class Scratch3OhbotBlocks {
 						description: 'Get the mouse y variable scaled 0-10'
 					}),
 					blockType: BlockType.REPORTER
+				},
+				{
+					opcode: 'askAIAndWait',
+					text: formatMessage({
+						id: 'ohbot.askAIAndWait',
+						default: 'ask AI [QUESTION] and wait',
+						description: 'Ask a question to OpenAI and wait for the response'
+					}),
+					blockType: BlockType.COMMAND,
+					arguments: {
+						QUESTION: {
+							type: ArgumentType.STRING,
+							defaultValue: 'Write a haiku about Ohbot Robot'
+						}
+					}
+				},
+				{
+					opcode: 'getAIAnswer',
+					text: formatMessage({
+						id: 'ohbot.getAIAnswer',
+						default: 'AI answer',
+						description: 'Get the most recent answer from OpenAI'
+					}),
+					blockType: BlockType.REPORTER
 				}
 			],
 			menus: {
 				motors: {
 					acceptReporters: true,
-					items: 'HeadTurn HeadNod EyeTurn EyeTilt TopLip BottomLip LidBlink'
+					items: 'HeadTurn HeadNod HeadTilt EyeTurn EyeTilt TopLip BottomLip LidBlink'
 						.split(' ')
 						.map(name => ({ text: name, value: name }))
 				},
@@ -954,6 +984,59 @@ class Scratch3OhbotBlocks {
         
         return Math.round((this.runtime.ioDevices.mouse.getScratchY()+180)/3.6)/10;
         
+	}
+
+	/**
+	 * Ask a question to OpenAI and wait for the response.
+	 * @param {object} args Block arguments
+	 * @param {object} util Utility object provided by the runtime.
+	 * @return {Promise}
+	 */
+	askAIAndWait(args, util) {
+		const question = Cast.toString(args.QUESTION);
+		// const OPENAI_API_KEY = 'sk-proj-...'; // replace with actual API key
+		const OPENAI_API_KEY = this.runtime.openAIKey || '';
+		const endpoint = 'https://api.openai.com/v1/chat/completions';
+
+		return fetch(endpoint, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${OPENAI_API_KEY}`
+			},
+			body: JSON.stringify({
+				model: 'gpt-4o',
+				messages: [{ role: 'user', content: question }]
+			})
+		})
+			.then(response => response.json())
+			.then(data => {
+				const reply = data.choices?.[0]?.message?.content || '';
+				this._lastAIAnswer = reply;
+				// alert(`AI says: ${reply}`); // Replace with UI response or speech as needed
+			})
+			.catch(err => {
+				console.error('OpenAI Error:', err);
+				this._lastAIAnswer = '';
+				// alert('Failed to get a response from OpenAI.');
+			});
+	}
+
+	/**
+	 * Set the OpenAI API key and save it to localStorage.
+	 * @param {object} args Block arguments
+	 */
+	setOpenAIKey(args) {
+		const key = args.KEY;
+		localStorage.setItem('ohbot_openai_key', key);
+		this.runtime.openAIKey = key;
+	}
+
+	/**
+	 * Get the most recent AI answer.
+	 */
+	getAIAnswer() {
+		return this._lastAIAnswer || '';
 	}
 
 	/**
