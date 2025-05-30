@@ -668,31 +668,31 @@ class Scratch3OhbotBlocks {
                     }),
                     blockType: BlockType.REPORTER,
                 },
-                {
-                    opcode: 'askAIAndWait',
-                    text: formatMessage({
-                        id: 'ohbot.askAIAndWait',
-                        default: 'ask AI [QUESTION] and wait',
-                        description:
-                            'Ask a question to OpenAI and wait for the response',
-                    }),
-                    blockType: BlockType.COMMAND,
-                    arguments: {
-                        QUESTION: {
-                            type: ArgumentType.STRING,
-                            defaultValue: 'Write a haiku about Ohbot Robot',
-                        },
-                    },
-                },
-                {
-                    opcode: 'getAIAnswer',
-                    text: formatMessage({
-                        id: 'ohbot.getAIAnswer',
-                        default: 'AI answer',
-                        description: 'Get the most recent answer from OpenAI',
-                    }),
-                    blockType: BlockType.REPORTER,
-                },
+                // {
+                //     opcode: 'askAIAndWait',
+                //     text: formatMessage({
+                //         id: 'ohbot.askAIAndWait',
+                //         default: 'ask AI [QUESTION] and wait',
+                //         description:
+                //             'Ask a question to OpenAI and wait for the response',
+                //     }),
+                //     blockType: BlockType.COMMAND,
+                //     arguments: {
+                //         QUESTION: {
+                //             type: ArgumentType.STRING,
+                //             defaultValue: 'Write a haiku about Ohbot Robot',
+                //         },
+                //     },
+                // },
+                // {
+                //     opcode: 'getAIAnswer',
+                //     text: formatMessage({
+                //         id: 'ohbot.getAIAnswer',
+                //         default: 'AI answer',
+                //         description: 'Get the most recent answer from OpenAI',
+                //     }),
+                //     blockType: BlockType.REPORTER,
+                // },
             ],
             menus: {
                 motors: {
