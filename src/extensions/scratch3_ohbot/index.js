@@ -659,7 +659,7 @@ class Scratch3OhbotBlocks {
 			menus: {
 				motors: {
 					acceptReporters: true,
-					items: 'HeadTurn HeadNod EyeTurn EyeTilt TopLip BottomLip LidBlink'
+					items: 'HeadTurn HeadNod HeadRoll EyeTurn EyeTilt TopLip BottomLip LidBlink'
 						.split(' ')
 						.map(name => ({ text: name, value: name }))
 				},
@@ -694,12 +694,21 @@ class Scratch3OhbotBlocks {
 	}
 
 	setMotorPosition(args) {
-        unityInstance.SendMessage(Robot, "M"+args.MOTOR,parseFloat(args.POSITION));
+
+        unityInstance.SendMessage(
+            Robot,
+            "JSONCommand",
+            JSON.stringify({ type: "setMotor", motor: args.MOTOR, value: args.POSITION })
+        );
 
 		return this.runCommand(['MM', args.MOTOR, args.POSITION]);
 	}
 	changeMotorPosition(args) {
-        unityInstance.SendMessage(Robot, "C"+args.MOTOR,parseFloat(args.POSITION));
+        unityInstance.SendMessage(
+            Robot,
+            "JSONCommand",
+            JSON.stringify({ type: "changeMotor", motor: args.MOTOR, value: args.POSITION })
+        );
 		return this.runCommand(['MC', args.MOTOR, args.POSITION]);
 	}
 	setMotorSpeed(args) {
@@ -719,18 +728,13 @@ class Scratch3OhbotBlocks {
 	}
 
 	setRGBColour(args) {
-        if(args.RGB == 'red')
-            {
-                unityInstance.SendMessage(Robot, "SetR",parseFloat(args.RGBCOLOUR));
-            }
-        if(args.RGB == 'green')
-            {
-                unityInstance.SendMessage(Robot, "SetG",parseFloat(args.RGBCOLOUR));
-            }
-        if(args.RGB == 'blue')
-            {
-                unityInstance.SendMessage(Robot, "SetB",parseFloat(args.RGBCOLOUR));
-            }
+        if (args.RGB === 'red') {
+            unityInstance.SendMessage(Robot, "SetR", parseFloat(args.RGBCOLOUR));
+        } else if (args.RGB === 'green') {
+            unityInstance.SendMessage(Robot, "SetG", parseFloat(args.RGBCOLOUR));
+        } else if (args.RGB === 'blue') {
+            unityInstance.SendMessage(Robot, "SetB", parseFloat(args.RGBCOLOUR));
+        }
 		return this.runCommand(['CE', args.RGB, args.RGBCOLOUR]);
 	}
     
