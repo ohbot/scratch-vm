@@ -419,6 +419,12 @@ class Scratch3OhbotBlocks {
 			});
 		}
 
+		const defaultAskQuestion = formatMessage({
+			id: 'ohbot.defaultAskQuestion',
+			default: 'what is your name?',
+			description: 'The default question for speak and wait'
+		});
+
 		return {
 			id: 'ohbot',
 			name: formatMessage({
@@ -593,6 +599,21 @@ class Scratch3OhbotBlocks {
 						WORDS: {
 							type: ArgumentType.STRING,
 							defaultValue: defaultTextToSpeak
+						}
+					}
+				},
+				{
+					opcode: 'askAndWait',
+					text: formatMessage({
+						id: 'ohbot.askAndWaitBlock',
+						default: 'speak [QUESTION] and wait',
+						description: 'Speak a question and wait for an answer'
+					}),
+					blockType: BlockType.COMMAND,
+					arguments: {
+						QUESTION: {
+							type: ArgumentType.STRING,
+							defaultValue: defaultAskQuestion
 						}
 					}
 				},
@@ -989,6 +1010,24 @@ speakNoWait(args, util) {
  */
 speakAndWait(args, util) {
 	return this._speak(args, util, true);
+}
+
+askAndWait(args, util) {
+	const question = Cast.toString(args.QUESTION);
+	const speakArgs = { WORDS: question };
+
+	return this._speak(speakArgs, util, true).then(() => {
+		const askPrimitive = this.runtime &&
+			this.runtime._primitives &&
+			this.runtime._primitives.sensing_askandwait;
+
+		if (typeof askPrimitive !== 'function') {
+			log.warn('sensing_askandwait primitive unavailable for askAndWait block');
+			return Promise.resolve();
+		}
+
+		return askPrimitive({ QUESTION: question }, util);
+	});
 }
 
 _speak(args, util, wait) {
