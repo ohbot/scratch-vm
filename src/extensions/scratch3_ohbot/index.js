@@ -8,11 +8,6 @@ const Cast = require('../../util/cast');
 const MathUtil = require('../../util/math-util');
 const Clone = require('../../util/clone');
 const log = require('../../util/log');
-
-
-const editorExtensionId = 'bfjihladgnccpchokgeeicpjcakdmkbe';
-
-
 /**
  * Icon svg to be displayed in the blocks category menu, encoded as a data URI.
  * @type {string}
@@ -714,63 +709,68 @@ class Scratch3OhbotBlocks {
 		};
 	}
 
+	/**
+	 * Emit a simulator command via the runtime event bus.
+	 * The GUI-side UnityPlayer component listens for these and forwards to Unity.
+	 * @param {string} method - The Unity method name to call.
+	 * @param {string|number} [args] - Optional argument to pass.
+	 * @param {string} [onlyRobot] - If set, command is only sent when active robot matches.
+	 */
+	_emitSimCommand (method, args, onlyRobot) {
+		if (this.runtime) {
+			this.runtime.emit('SIM_COMMAND', {method, args, onlyRobot});
+		}
+	}
+
 	setMotorPosition(args) {
-
-        unityInstance.SendMessage(
-            Robot,
-            "JSONCommand",
-            JSON.stringify({ type: "setMotor", motor: args.MOTOR, value: args.POSITION })
-        );
-
+		this._emitSimCommand(
+			'JSONCommand',
+			JSON.stringify({ type: 'setMotor', motor: args.MOTOR, value: args.POSITION })
+		);
 		return this.runCommand(['MM', args.MOTOR, args.POSITION]);
 	}
 	changeMotorPosition(args) {
-        unityInstance.SendMessage(
-            Robot,
-            "JSONCommand",
-            JSON.stringify({ type: "changeMotor", motor: args.MOTOR, value: args.POSITION })
-        );
+		this._emitSimCommand(
+			'JSONCommand',
+			JSON.stringify({ type: 'changeMotor', motor: args.MOTOR, value: args.POSITION })
+		);
 		return this.runCommand(['MC', args.MOTOR, args.POSITION]);
 	}
 	setMotorSpeed(args) {
 		return this.runCommand(['MS', args.MOTOR, args.SPEED]);
 	}
 	setNamedColour(args) {
-        unityInstance.SendMessage(Robot, "SetColByName",args.COLOURNAME);
+		this._emitSimCommand('SetColByName', args.COLOURNAME);
 		return this.runCommand(['CC', args.COLOURNAME]);
 	}
 
 	setEyeShape(args) {
-        if(Robot == 'Picoh')
-            {
-                unityInstance.SendMessage(Robot, "SetEyeShape",args.EYESHAPE);
-            }
+		this._emitSimCommand('SetEyeShape', args.EYESHAPE, 'Picoh');
 		return this.runCommand(['ES', args.EYESHAPE]);
 	}
 
 	setRGBColour(args) {
-        if (args.RGB === 'red') {
-            unityInstance.SendMessage(Robot, "SetR", parseFloat(args.RGBCOLOUR));
-        } else if (args.RGB === 'green') {
-            unityInstance.SendMessage(Robot, "SetG", parseFloat(args.RGBCOLOUR));
-        } else if (args.RGB === 'blue') {
-            unityInstance.SendMessage(Robot, "SetB", parseFloat(args.RGBCOLOUR));
-        }
+		if (args.RGB === 'red') {
+			this._emitSimCommand('SetR', parseFloat(args.RGBCOLOUR));
+		} else if (args.RGB === 'green') {
+			this._emitSimCommand('SetG', parseFloat(args.RGBCOLOUR));
+		} else if (args.RGB === 'blue') {
+			this._emitSimCommand('SetB', parseFloat(args.RGBCOLOUR));
+		}
 		return this.runCommand(['CE', args.RGB, args.RGBCOLOUR]);
 	}
-    
+
 	reset() {
 		this._stopAll();
 		this.runCommand(['R', '', '']);
-        unityInstance.SendMessage(Robot, "ResetController");
-
+		this._emitSimCommand('ResetController');
 	}
 
 	runCommand(cmd) {
-		return new Promise((resolve, reject) => {
-			chrome.runtime.sendMessage(editorExtensionId, cmd);
-			resolve();
-		}).then(() => new Promise(resolve => setTimeout(resolve, 100)));
+		if (this.runtime) {
+			this.runtime.emit('ROBOT_COMMAND', cmd);
+		}
+		return new Promise(resolve => setTimeout(resolve, 100));
 	}
 
 	/**
