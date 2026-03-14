@@ -98,6 +98,308 @@ const SWEDISH_ID = 'sv';
 const TURKISH_ID = 'tr';
 const WELSH_ID = 'cy';
 
+const OHBOT_TRANSLATIONS = {
+	'ar': {
+		'ohbot.alto': 'عالي',
+		'ohbot.tenor': 'تينور',
+		'ohbot.squeak': 'حاد',
+		'ohbot.giant': 'عملاق',
+		'ohbot.defaultTextToSpeak': 'مرحبا',
+		'ohbot.defaultAskQuestion': 'ما اسمك؟',
+		'ohbot.setMotorPosition': 'اضبط [MOTOR] على [POSITION]',
+		'ohbot.changeMotor': 'غيّر [MOTOR] بمقدار [POSITION]',
+		'ohbot.moveMotor': 'اضبط سرعة [MOTOR] على [SPEED]',
+		'ohbot.setEyeShape': 'اضبط شكل العينين على [EYESHAPE]',
+		'ohbot.setNamedColour': 'اضبط اللون على [COLOURNAME]',
+		'ohbot.setRGBColour': 'اضبط لون RGB [RGB] على [RGBCOLOUR]',
+		'ohbot.reset': 'إعادة ضبط',
+		'ohbot.speakNoWaitBlock': 'قل [WORDS]',
+		'ohbot.speakAndWaitBlock': 'قل [WORDS] حتى ينتهي',
+		'ohbot.askAndWaitBlock': 'قل [QUESTION] وانتظر',
+		'ohbot.setVoiceBlock': 'اضبط الصوت على [VOICE]',
+		'ohbot.setLanguageBlock': 'اضبط اللغة على [LANGUAGE]',
+		'ohbot.getLip': 'الشفاه',
+		'ohbot.mouseX': 'س x',
+		'ohbot.mouseY': 'س y'
+	},
+	'de': {
+		'ohbot.alto': 'Alt',
+		'ohbot.tenor': 'Tenor',
+		'ohbot.squeak': 'piepsig',
+		'ohbot.giant': 'riesig',
+		'ohbot.defaultTextToSpeak': 'hallo',
+		'ohbot.defaultAskQuestion': 'wie heisst du?',
+		'ohbot.setMotorPosition': 'setze [MOTOR] auf [POSITION]',
+		'ohbot.changeMotor': 'ändere [MOTOR] um [POSITION]',
+		'ohbot.moveMotor': 'setze [MOTOR]-Geschwindigkeit auf [SPEED]',
+		'ohbot.setEyeShape': 'setze Augenform auf [EYESHAPE]',
+		'ohbot.setNamedColour': 'setze Farbe auf [COLOURNAME]',
+		'ohbot.setRGBColour': 'setze RGB-Farbe [RGB] auf [RGBCOLOUR]',
+		'ohbot.reset': 'zurücksetzen',
+		'ohbot.speakNoWaitBlock': 'sprich [WORDS]',
+		'ohbot.speakAndWaitBlock': 'sprich [WORDS] bis zum Ende',
+		'ohbot.askAndWaitBlock': 'sprich [QUESTION] und warte',
+		'ohbot.setVoiceBlock': 'setze Stimme auf [VOICE]',
+		'ohbot.setLanguageBlock': 'setze Sprache auf [LANGUAGE]',
+		'ohbot.getLip': 'Lippe',
+		'ohbot.mouseX': 'Maus x',
+		'ohbot.mouseY': 'Maus y'
+	},
+	'es': {
+		'ohbot.alto': 'alto',
+		'ohbot.tenor': 'tenor',
+		'ohbot.squeak': 'aguda',
+		'ohbot.giant': 'gigante',
+		'ohbot.defaultTextToSpeak': 'hola',
+		'ohbot.defaultAskQuestion': '¿cómo te llamas?',
+		'ohbot.setMotorPosition': 'poner [MOTOR] en [POSITION]',
+		'ohbot.changeMotor': 'cambiar [MOTOR] en [POSITION]',
+		'ohbot.moveMotor': 'poner velocidad de [MOTOR] en [SPEED]',
+		'ohbot.setEyeShape': 'poner forma de ojos en [EYESHAPE]',
+		'ohbot.setNamedColour': 'poner color en [COLOURNAME]',
+		'ohbot.setRGBColour': 'poner color RGB [RGB] en [RGBCOLOUR]',
+		'ohbot.reset': 'reiniciar',
+		'ohbot.speakNoWaitBlock': 'decir [WORDS]',
+		'ohbot.speakAndWaitBlock': 'decir [WORDS] hasta terminar',
+		'ohbot.askAndWaitBlock': 'decir [QUESTION] y esperar',
+		'ohbot.setVoiceBlock': 'poner voz en [VOICE]',
+		'ohbot.setLanguageBlock': 'poner idioma en [LANGUAGE]',
+		'ohbot.getLip': 'labio',
+		'ohbot.mouseX': 'ratón x',
+		'ohbot.mouseY': 'ratón y'
+	},
+	'es-419': {
+		'ohbot.alto': 'alto',
+		'ohbot.tenor': 'tenor',
+		'ohbot.squeak': 'aguda',
+		'ohbot.giant': 'gigante',
+		'ohbot.defaultTextToSpeak': 'hola',
+		'ohbot.defaultAskQuestion': '¿cómo te llamas?',
+		'ohbot.setMotorPosition': 'poner [MOTOR] en [POSITION]',
+		'ohbot.changeMotor': 'cambiar [MOTOR] en [POSITION]',
+		'ohbot.moveMotor': 'poner velocidad de [MOTOR] en [SPEED]',
+		'ohbot.setEyeShape': 'poner forma de ojos en [EYESHAPE]',
+		'ohbot.setNamedColour': 'poner color en [COLOURNAME]',
+		'ohbot.setRGBColour': 'poner color RGB [RGB] en [RGBCOLOUR]',
+		'ohbot.reset': 'reiniciar',
+		'ohbot.speakNoWaitBlock': 'decir [WORDS]',
+		'ohbot.speakAndWaitBlock': 'decir [WORDS] hasta terminar',
+		'ohbot.askAndWaitBlock': 'decir [QUESTION] y esperar',
+		'ohbot.setVoiceBlock': 'poner voz en [VOICE]',
+		'ohbot.setLanguageBlock': 'poner idioma en [LANGUAGE]',
+		'ohbot.getLip': 'labio',
+		'ohbot.mouseX': 'ratón x',
+		'ohbot.mouseY': 'ratón y'
+	},
+	'fr': {
+		'ohbot.alto': 'alto',
+		'ohbot.tenor': 'ténor',
+		'ohbot.squeak': 'aiguë',
+		'ohbot.giant': 'géant',
+		'ohbot.defaultTextToSpeak': 'bonjour',
+		'ohbot.defaultAskQuestion': 'comment t’appelles-tu ?',
+		'ohbot.setMotorPosition': 'mettre [MOTOR] à [POSITION]',
+		'ohbot.changeMotor': 'changer [MOTOR] de [POSITION]',
+		'ohbot.moveMotor': 'mettre la vitesse de [MOTOR] à [SPEED]',
+		'ohbot.setEyeShape': 'mettre la forme des yeux à [EYESHAPE]',
+		'ohbot.setNamedColour': 'mettre la couleur à [COLOURNAME]',
+		'ohbot.setRGBColour': 'mettre la couleur RGB [RGB] à [RGBCOLOUR]',
+		'ohbot.reset': 'réinitialiser',
+		'ohbot.speakNoWaitBlock': 'dire [WORDS]',
+		'ohbot.speakAndWaitBlock': 'dire [WORDS] jusqu’à la fin',
+		'ohbot.askAndWaitBlock': 'dire [QUESTION] et attendre',
+		'ohbot.setVoiceBlock': 'mettre la voix à [VOICE]',
+		'ohbot.setLanguageBlock': 'mettre la langue à [LANGUAGE]',
+		'ohbot.getLip': 'lèvre',
+		'ohbot.mouseX': 'souris x',
+		'ohbot.mouseY': 'souris y'
+	},
+	'hi': {
+		'ohbot.alto': 'अल्टो',
+		'ohbot.tenor': 'टेनर',
+		'ohbot.squeak': 'तीखी',
+		'ohbot.giant': 'विशाल',
+		'ohbot.defaultTextToSpeak': 'नमस्ते',
+		'ohbot.defaultAskQuestion': 'तुम्हारा नाम क्या है?',
+		'ohbot.setMotorPosition': '[MOTOR] को [POSITION] पर सेट करें',
+		'ohbot.changeMotor': '[MOTOR] को [POSITION] से बदलें',
+		'ohbot.moveMotor': '[MOTOR] की गति [SPEED] पर सेट करें',
+		'ohbot.setEyeShape': 'आंखों का आकार [EYESHAPE] पर सेट करें',
+		'ohbot.setNamedColour': 'रंग को [COLOURNAME] पर सेट करें',
+		'ohbot.setRGBColour': 'RGB रंग [RGB] को [RGBCOLOUR] पर सेट करें',
+		'ohbot.reset': 'रीसेट',
+		'ohbot.speakNoWaitBlock': '[WORDS] बोलें',
+		'ohbot.speakAndWaitBlock': '[WORDS] बोलें और पूरा होने तक प्रतीक्षा करें',
+		'ohbot.askAndWaitBlock': '[QUESTION] बोलें और प्रतीक्षा करें',
+		'ohbot.setVoiceBlock': 'आवाज़ को [VOICE] पर सेट करें',
+		'ohbot.setLanguageBlock': 'भाषा को [LANGUAGE] पर सेट करें',
+		'ohbot.getLip': 'होंठ',
+		'ohbot.mouseX': 'माउस x',
+		'ohbot.mouseY': 'माउस y'
+	},
+	'it': {
+		'ohbot.alto': 'alto',
+		'ohbot.tenor': 'tenore',
+		'ohbot.squeak': 'stridula',
+		'ohbot.giant': 'gigante',
+		'ohbot.defaultTextToSpeak': 'ciao',
+		'ohbot.defaultAskQuestion': 'come ti chiami?',
+		'ohbot.setMotorPosition': 'imposta [MOTOR] a [POSITION]',
+		'ohbot.changeMotor': 'cambia [MOTOR] di [POSITION]',
+		'ohbot.moveMotor': 'imposta la velocità di [MOTOR] a [SPEED]',
+		'ohbot.setEyeShape': 'imposta la forma degli occhi su [EYESHAPE]',
+		'ohbot.setNamedColour': 'imposta il colore su [COLOURNAME]',
+		'ohbot.setRGBColour': 'imposta il colore RGB [RGB] su [RGBCOLOUR]',
+		'ohbot.reset': 'reimposta',
+		'ohbot.speakNoWaitBlock': 'pronuncia [WORDS]',
+		'ohbot.speakAndWaitBlock': 'pronuncia [WORDS] fino alla fine',
+		'ohbot.askAndWaitBlock': 'pronuncia [QUESTION] e attendi',
+		'ohbot.setVoiceBlock': 'imposta la voce su [VOICE]',
+		'ohbot.setLanguageBlock': 'imposta la lingua su [LANGUAGE]',
+		'ohbot.getLip': 'labbro',
+		'ohbot.mouseX': 'mouse x',
+		'ohbot.mouseY': 'mouse y'
+	},
+	'ja': {
+		'ohbot.alto': 'アルト',
+		'ohbot.tenor': 'テナー',
+		'ohbot.squeak': 'きんきん声',
+		'ohbot.giant': 'きょじん',
+		'ohbot.defaultTextToSpeak': 'こんにちは',
+		'ohbot.defaultAskQuestion': 'あなたの名前は何ですか？',
+		'ohbot.setMotorPosition': '[MOTOR] を [POSITION] にする',
+		'ohbot.changeMotor': '[MOTOR] を [POSITION] 変える',
+		'ohbot.moveMotor': '[MOTOR] の速さを [SPEED] にする',
+		'ohbot.setEyeShape': '目の形を [EYESHAPE] にする',
+		'ohbot.setNamedColour': '色を [COLOURNAME] にする',
+		'ohbot.setRGBColour': 'RGB 色 [RGB] を [RGBCOLOUR] にする',
+		'ohbot.reset': 'リセット',
+		'ohbot.speakNoWaitBlock': '[WORDS] と話す',
+		'ohbot.speakAndWaitBlock': '[WORDS] と話して終わるまで待つ',
+		'ohbot.askAndWaitBlock': '[QUESTION] と話して待つ',
+		'ohbot.setVoiceBlock': '声を [VOICE] にする',
+		'ohbot.setLanguageBlock': '言語を [LANGUAGE] にする',
+		'ohbot.getLip': 'くちびる',
+		'ohbot.mouseX': 'マウス x',
+		'ohbot.mouseY': 'マウス y'
+	},
+	'ko': {
+		'ohbot.alto': '알토',
+		'ohbot.tenor': '테너',
+		'ohbot.squeak': '높은 목소리',
+		'ohbot.giant': '거인',
+		'ohbot.defaultTextToSpeak': '안녕하세요',
+		'ohbot.defaultAskQuestion': '이름이 뭐예요?',
+		'ohbot.setMotorPosition': '[MOTOR] 을(를) [POSITION](으)로 정하기',
+		'ohbot.changeMotor': '[MOTOR] 을(를) [POSITION] 만큼 바꾸기',
+		'ohbot.moveMotor': '[MOTOR] 속도를 [SPEED](으)로 정하기',
+		'ohbot.setEyeShape': '눈 모양을 [EYESHAPE](으)로 정하기',
+		'ohbot.setNamedColour': '색을 [COLOURNAME](으)로 정하기',
+		'ohbot.setRGBColour': 'RGB 색 [RGB] 을(를) [RGBCOLOUR](으)로 정하기',
+		'ohbot.reset': '초기화',
+		'ohbot.speakNoWaitBlock': '[WORDS] 말하기',
+		'ohbot.speakAndWaitBlock': '[WORDS] 말하고 끝날 때까지 기다리기',
+		'ohbot.askAndWaitBlock': '[QUESTION] 말하고 기다리기',
+		'ohbot.setVoiceBlock': '목소리를 [VOICE](으)로 정하기',
+		'ohbot.setLanguageBlock': '언어를 [LANGUAGE](으)로 정하기',
+		'ohbot.getLip': '입술',
+		'ohbot.mouseX': '마우스 x',
+		'ohbot.mouseY': '마우스 y'
+	},
+	'pt': {
+		'ohbot.alto': 'alto',
+		'ohbot.tenor': 'tenor',
+		'ohbot.squeak': 'aguda',
+		'ohbot.giant': 'gigante',
+		'ohbot.defaultTextToSpeak': 'olá',
+		'ohbot.defaultAskQuestion': 'como te chamas?',
+		'ohbot.setMotorPosition': 'definir [MOTOR] para [POSITION]',
+		'ohbot.changeMotor': 'alterar [MOTOR] em [POSITION]',
+		'ohbot.moveMotor': 'definir velocidade de [MOTOR] para [SPEED]',
+		'ohbot.setEyeShape': 'definir forma dos olhos para [EYESHAPE]',
+		'ohbot.setNamedColour': 'definir cor para [COLOURNAME]',
+		'ohbot.setRGBColour': 'definir cor RGB [RGB] para [RGBCOLOUR]',
+		'ohbot.reset': 'repor',
+		'ohbot.speakNoWaitBlock': 'dizer [WORDS]',
+		'ohbot.speakAndWaitBlock': 'dizer [WORDS] até terminar',
+		'ohbot.askAndWaitBlock': 'dizer [QUESTION] e esperar',
+		'ohbot.setVoiceBlock': 'definir voz para [VOICE]',
+		'ohbot.setLanguageBlock': 'definir idioma para [LANGUAGE]',
+		'ohbot.getLip': 'lábio',
+		'ohbot.mouseX': 'rato x',
+		'ohbot.mouseY': 'rato y'
+	},
+	'pt-br': {
+		'ohbot.alto': 'alto',
+		'ohbot.tenor': 'tenor',
+		'ohbot.squeak': 'aguda',
+		'ohbot.giant': 'gigante',
+		'ohbot.defaultTextToSpeak': 'olá',
+		'ohbot.defaultAskQuestion': 'qual é o seu nome?',
+		'ohbot.setMotorPosition': 'definir [MOTOR] para [POSITION]',
+		'ohbot.changeMotor': 'alterar [MOTOR] em [POSITION]',
+		'ohbot.moveMotor': 'definir velocidade de [MOTOR] para [SPEED]',
+		'ohbot.setEyeShape': 'definir formato dos olhos para [EYESHAPE]',
+		'ohbot.setNamedColour': 'definir cor para [COLOURNAME]',
+		'ohbot.setRGBColour': 'definir cor RGB [RGB] para [RGBCOLOUR]',
+		'ohbot.reset': 'reiniciar',
+		'ohbot.speakNoWaitBlock': 'falar [WORDS]',
+		'ohbot.speakAndWaitBlock': 'falar [WORDS] até terminar',
+		'ohbot.askAndWaitBlock': 'falar [QUESTION] e esperar',
+		'ohbot.setVoiceBlock': 'definir voz para [VOICE]',
+		'ohbot.setLanguageBlock': 'definir idioma para [LANGUAGE]',
+		'ohbot.getLip': 'lábio',
+		'ohbot.mouseX': 'mouse x',
+		'ohbot.mouseY': 'mouse y'
+	},
+	'zh-cn': {
+		'ohbot.alto': '女中音',
+		'ohbot.tenor': '男高音',
+		'ohbot.squeak': '尖细',
+		'ohbot.giant': '巨人',
+		'ohbot.defaultTextToSpeak': '你好',
+		'ohbot.defaultAskQuestion': '你叫什么名字？',
+		'ohbot.setMotorPosition': '将 [MOTOR] 设为 [POSITION]',
+		'ohbot.changeMotor': '将 [MOTOR] 改变 [POSITION]',
+		'ohbot.moveMotor': '将 [MOTOR] 速度设为 [SPEED]',
+		'ohbot.setEyeShape': '将眼睛形状设为 [EYESHAPE]',
+		'ohbot.setNamedColour': '将颜色设为 [COLOURNAME]',
+		'ohbot.setRGBColour': '将 RGB 颜色 [RGB] 设为 [RGBCOLOUR]',
+		'ohbot.reset': '重置',
+		'ohbot.speakNoWaitBlock': '说 [WORDS]',
+		'ohbot.speakAndWaitBlock': '说 [WORDS] 并等待完成',
+		'ohbot.askAndWaitBlock': '说 [QUESTION] 并等待',
+		'ohbot.setVoiceBlock': '将声音设为 [VOICE]',
+		'ohbot.setLanguageBlock': '将语言设为 [LANGUAGE]',
+		'ohbot.getLip': '嘴唇',
+		'ohbot.mouseX': '鼠标 x',
+		'ohbot.mouseY': '鼠标 y'
+	},
+	'zh-tw': {
+		'ohbot.alto': '女中音',
+		'ohbot.tenor': '男高音',
+		'ohbot.squeak': '尖細',
+		'ohbot.giant': '巨人',
+		'ohbot.defaultTextToSpeak': '你好',
+		'ohbot.defaultAskQuestion': '你叫什麼名字？',
+		'ohbot.setMotorPosition': '將 [MOTOR] 設為 [POSITION]',
+		'ohbot.changeMotor': '將 [MOTOR] 改變 [POSITION]',
+		'ohbot.moveMotor': '將 [MOTOR] 速度設為 [SPEED]',
+		'ohbot.setEyeShape': '將眼睛形狀設為 [EYESHAPE]',
+		'ohbot.setNamedColour': '將顏色設為 [COLOURNAME]',
+		'ohbot.setRGBColour': '將 RGB 顏色 [RGB] 設為 [RGBCOLOUR]',
+		'ohbot.reset': '重設',
+		'ohbot.speakNoWaitBlock': '說 [WORDS]',
+		'ohbot.speakAndWaitBlock': '說 [WORDS] 並等待完成',
+		'ohbot.askAndWaitBlock': '說 [QUESTION] 並等待',
+		'ohbot.setVoiceBlock': '將聲音設為 [VOICE]',
+		'ohbot.setLanguageBlock': '將語言設為 [LANGUAGE]',
+		'ohbot.getLip': '嘴唇',
+		'ohbot.mouseX': '滑鼠 x',
+		'ohbot.mouseY': '滑鼠 y'
+	}
+};
+
 /**
  * Min and max values for lip variable.
  */
@@ -145,44 +447,52 @@ class Scratch3OhbotBlocks {
     
 	}
 
+	_getTranslationLocale () {
+		const editorLanguage = this.getEditorLanguage();
+		if (OHBOT_TRANSLATIONS[editorLanguage]) {
+			return editorLanguage;
+		}
+		const baseLanguage = editorLanguage.split('-')[0];
+		if (OHBOT_TRANSLATIONS[baseLanguage]) {
+			return baseLanguage;
+		}
+		return null;
+	}
+
+	_getMessage (id, defaultMessage, description) {
+		const translationLocale = this._getTranslationLocale();
+		const localizedDefault = translationLocale && OHBOT_TRANSLATIONS[translationLocale][id] ?
+			OHBOT_TRANSLATIONS[translationLocale][id] :
+			defaultMessage;
+		return formatMessage({
+			id: id,
+			default: localizedDefault,
+			description: description
+		});
+	}
+
 	/**
 	 * An object with info for each voice.
 	 */
 	get VOICE_INFO() {
 		return {
 			[ALTO_ID]: {
-				name: formatMessage({
-					id: 'ohbot.alto',
-					default: 'alto',
-					description: 'Name for a voice with ambiguous gender'
-				}),
+				name: this._getMessage('ohbot.alto', 'alto', 'Name for a voice with ambiguous gender'),
 				gender: 'female',
 				playbackRate: 1
 			},
 			[TENOR_ID]: {
-				name: formatMessage({
-					id: 'ohbot.tenor',
-					default: 'tenor',
-					description: 'Name for a voice with ambiguous gender'
-				}),
+				name: this._getMessage('ohbot.tenor', 'tenor', 'Name for a voice with ambiguous gender'),
 				gender: 'male',
 				playbackRate: 1
 			},
 			[SQUEAK_ID]: {
-				name: formatMessage({
-					id: 'ohbot.squeak',
-					default: 'squeak',
-					description: 'Name for a funny voice with a high pitch'
-				}),
+				name: this._getMessage('ohbot.squeak', 'squeak', 'Name for a funny voice with a high pitch'),
 				gender: 'female',
 				playbackRate: 1.19 // +3 semitones
 			},
 			[GIANT_ID]: {
-				name: formatMessage({
-					id: 'ohbot.giant',
-					default: 'giant',
-					description: 'Name for a funny voice with a low pitch'
-				}),
+				name: this._getMessage('ohbot.giant', 'giant', 'Name for a funny voice with a low pitch'),
 				gender: 'male',
 				playbackRate: 0.84 // -3 semitones
 			}
@@ -407,36 +717,32 @@ class Scratch3OhbotBlocks {
 		// supported language.
 		let defaultTextToSpeak = 'hello';
 		if (this.isSupportedLanguage(this.getEditorLanguage())) {
-			defaultTextToSpeak = formatMessage({
-				id: 'ohbot.defaultTextToSpeak',
-				default: 'hello',
-				description: 'The default text to speak'
-			});
+			defaultTextToSpeak = this._getMessage(
+				'ohbot.defaultTextToSpeak',
+				'hello',
+				'The default text to speak'
+			);
 		}
 
-		const defaultAskQuestion = formatMessage({
-			id: 'ohbot.defaultAskQuestion',
-			default: 'what is your name?',
-			description: 'The default question for speak and wait'
-		});
+		const defaultAskQuestion = this._getMessage(
+			'ohbot.defaultAskQuestion',
+			'what is your name?',
+			'The default question for speak and wait'
+		);
 
 		return {
 			id: 'ohbot',
-			name: formatMessage({
-				id: 'ohbot.categoryName',
-				default: 'Ohbot',
-				description: 'Name of the Ohbot extension'
-			}),
+			name: this._getMessage('ohbot.categoryName', 'Ohbot', 'Name of the Ohbot extension'),
 			blockIconURI: blockIconURI,
 			menuIconURI: menuIconURI,
 			blocks: [
 				{
 					opcode: 'setMotorPosition',
-					text: formatMessage({
-						id: 'ohbot.setMotorPosition',
-						default: 'set [MOTOR] to [POSITION]',
-						description: 'Set the position of an Ohbot motor'
-					}),
+					text: this._getMessage(
+						'ohbot.setMotorPosition',
+						'set [MOTOR] to [POSITION]',
+						'Set the position of an Ohbot motor'
+					),
 					blockType: BlockType.COMMAND,
 					arguments: {
 						MOTOR: {
@@ -452,11 +758,11 @@ class Scratch3OhbotBlocks {
 				},
 				{
 					opcode: 'changeMotorPosition',
-					text: formatMessage({
-						id: 'ohbot.changeMotor',
-						default: 'change [MOTOR] by [POSITION]',
-						description: 'Move an Ohbot motor'
-					}),
+					text: this._getMessage(
+						'ohbot.changeMotor',
+						'change [MOTOR] by [POSITION]',
+						'Move an Ohbot motor'
+					),
 					blockType: BlockType.COMMAND,
 					arguments: {
 						MOTOR: {
@@ -472,11 +778,11 @@ class Scratch3OhbotBlocks {
 				},
 				{
 					opcode: 'setMotorSpeed',
-					text: formatMessage({
-						id: 'ohbot.moveMotor',
-						default: 'set [MOTOR] speed to [SPEED]',
-						description: 'Set the speed of an Ohbot motor'
-					}),
+					text: this._getMessage(
+						'ohbot.moveMotor',
+						'set [MOTOR] speed to [SPEED]',
+						'Set the speed of an Ohbot motor'
+					),
 					blockType: BlockType.COMMAND,
 					arguments: {
 						MOTOR: {
@@ -492,11 +798,11 @@ class Scratch3OhbotBlocks {
 				},
 				{
 					opcode: 'setEyeShape',
-					text: formatMessage({
-						id: 'ohbot.setEyeShape',
-						default: 'set eyeshape to [EYESHAPE]',
-						description: 'Set the Picohs eyeshape'
-					}),
+					text: this._getMessage(
+						'ohbot.setEyeShape',
+						'set eyeshape to [EYESHAPE]',
+						'Set the Picohs eyeshape'
+					),
 					blockType: BlockType.COMMAND,
 					arguments: {
 						EYESHAPE: {
@@ -524,11 +830,11 @@ class Scratch3OhbotBlocks {
                 //},
 				{
 					opcode: 'setNamedColour',
-					text: formatMessage({
-						id: 'ohbot.setNamedColour',
-						default: 'set colour to [COLOURNAME]',
-						description: 'Set named Ohbot eye colour or Picoh base colour'
-					}),
+					text: this._getMessage(
+						'ohbot.setNamedColour',
+						'set colour to [COLOURNAME]',
+						'Set named Ohbot eye colour or Picoh base colour'
+					),
 					blockType: BlockType.COMMAND,
 					arguments: {
 						COLOURNAME: {
@@ -540,11 +846,11 @@ class Scratch3OhbotBlocks {
 				},
 				{
 					opcode: 'setRGBColour',
-					text: formatMessage({
-						id: 'ohbot.setRGBColour',
-						default: 'set colour RGB [RGB] to [RGBCOLOUR]',
-						description: 'Set RGB Ohbot eye colour or Picoh base colour'
-					}),
+					text: this._getMessage(
+						'ohbot.setRGBColour',
+						'set colour RGB [RGB] to [RGBCOLOUR]',
+						'Set RGB Ohbot eye colour or Picoh base colour'
+					),
 					blockType: BlockType.COMMAND,
 					arguments: {
 						RGB: {
@@ -560,20 +866,12 @@ class Scratch3OhbotBlocks {
 				},
 				{
 					opcode: 'reset',
-					text: formatMessage({
-						id: 'ohbot.reset',
-						default: 'reset',
-						description: 'Reset Ohbot or Picoh'
-					}),
+					text: this._getMessage('ohbot.reset', 'reset', 'Reset Ohbot or Picoh'),
 					blockType: BlockType.COMMAND
 				},
 				{
 					opcode: 'speakNoWait',
-					text: formatMessage({
-						id: 'ohbot.speakNoWaitBlock',
-						default: 'speak [WORDS]',
-						description: 'Speak'
-					}),
+					text: this._getMessage('ohbot.speakNoWaitBlock', 'speak [WORDS]', 'Speak'),
 					blockType: BlockType.COMMAND,
 					arguments: {
 						WORDS: {
@@ -584,11 +882,11 @@ class Scratch3OhbotBlocks {
 				},
 				{
 					opcode: 'speakAndWait',
-					text: formatMessage({
-						id: 'ohbot.speakAndWaitBlock',
-						default: 'speak [WORDS] until done',
-						description: 'Speak and wait until done'
-					}),
+					text: this._getMessage(
+						'ohbot.speakAndWaitBlock',
+						'speak [WORDS] until done',
+						'Speak and wait until done'
+					),
 					blockType: BlockType.COMMAND,
 					arguments: {
 						WORDS: {
@@ -599,11 +897,11 @@ class Scratch3OhbotBlocks {
 				},
 				{
 					opcode: 'askAndWait',
-					text: formatMessage({
-						id: 'ohbot.askAndWaitBlock',
-						default: 'speak [QUESTION] and wait',
-						description: 'Speak a question and wait for an answer'
-					}),
+					text: this._getMessage(
+						'ohbot.askAndWaitBlock',
+						'speak [QUESTION] and wait',
+						'Speak a question and wait for an answer'
+					),
 					blockType: BlockType.COMMAND,
 					arguments: {
 						QUESTION: {
@@ -614,11 +912,11 @@ class Scratch3OhbotBlocks {
 				},
 				{
 					opcode: 'setVoice',
-					text: formatMessage({
-						id: 'ohbot.setVoiceBlock',
-						default: 'set voice to [VOICE]',
-						description: 'Set the voice for speech synthesis'
-					}),
+					text: this._getMessage(
+						'ohbot.setVoiceBlock',
+						'set voice to [VOICE]',
+						'Set the voice for speech synthesis'
+					),
 					blockType: BlockType.COMMAND,
 					arguments: {
 						VOICE: {
@@ -630,11 +928,11 @@ class Scratch3OhbotBlocks {
 				},
 				{
 					opcode: 'setLanguage',
-					text: formatMessage({
-						id: 'ohbot.setLanguageBlock',
-						default: 'set language to [LANGUAGE]',
-						description: 'Set the language for speech synthesis'
-					}),
+					text: this._getMessage(
+						'ohbot.setLanguageBlock',
+						'set language to [LANGUAGE]',
+						'Set the language for speech synthesis'
+					),
 					blockType: BlockType.COMMAND,
 					arguments: {
 						LANGUAGE: {
@@ -646,29 +944,17 @@ class Scratch3OhbotBlocks {
 				},
 				{
 					opcode: 'getLip',
-					text: formatMessage({
-						id: 'ohbot.getLip',
-						default: 'lip',
-						description: 'Get the lip variable'
-					}),
+					text: this._getMessage('ohbot.getLip', 'lip', 'Get the lip variable'),
 					blockType: BlockType.REPORTER
 				},
 				{
 					opcode: 'oh_mouseX',
-					text: formatMessage({
-						id: 'ohbot.mouseX',
-						default: 'mouse x',
-						description: 'Get the mouse x variable scaled 0-10'
-					}),
+					text: this._getMessage('ohbot.mouseX', 'mouse x', 'Get the mouse x variable scaled 0-10'),
 					blockType: BlockType.REPORTER
 				},
 				{
 					opcode: 'oh_mouseY',
-					text: formatMessage({
-						id: 'ohbot.mouseY',
-						default: 'mouse y',
-						description: 'Get the mouse y variable scaled 0-10'
-					}),
+					text: this._getMessage('ohbot.mouseY', 'mouse y', 'Get the mouse y variable scaled 0-10'),
 					blockType: BlockType.REPORTER
 				}
 			],
