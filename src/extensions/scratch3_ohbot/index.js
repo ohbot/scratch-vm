@@ -1056,7 +1056,7 @@ class Scratch3OhbotBlocks {
 		if (this.runtime) {
 			this.runtime.emit('ROBOT_COMMAND', cmd);
 		}
-		return new Promise(resolve => setTimeout(resolve, 100));
+		return new Promise(resolve => setTimeout(resolve, 20));
 	}
 
 	/**
